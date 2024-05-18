@@ -6,6 +6,8 @@ declare global {
     interface ProcessEnv {
       ACCESS_CODE?: string;
 
+      DATABASE_URL?: string;
+
       SITE_URL?: string;
 
       AGENTS_INDEX_URL?: string;
@@ -32,6 +34,9 @@ export const getAppConfig = () => {
 
   return {
     ACCESS_CODES,
+
+    DATABASE_URL: process.env.DATABASE_URL,
+    DATABASE_TEST_URL: process.env.DATABASE_TEST_URL,
 
     DEFAULT_AGENT_CONFIG: process.env.DEFAULT_AGENT_CONFIG || '',
 

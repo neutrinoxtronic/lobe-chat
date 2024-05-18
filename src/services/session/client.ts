@@ -96,12 +96,26 @@ export class ClientService implements ISessionService {
     return SessionModel.update(id, { ...data, pinned });
   }
 
-  async updateSessionConfig(activeId: string, config: DeepPartial<LobeAgentConfig>) {
+  async updateSessionConfig(
+    activeId: string,
+    config: DeepPartial<LobeAgentConfig>,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _?: AbortSignal,
+  ) {
     if (activeId === INBOX_SESSION_ID) {
       return useUserStore.getState().updateDefaultAgent({ config });
     }
 
     return SessionModel.updateConfig(activeId, config);
+  }
+
+  async updateSessionChatConfig(
+    activeId: string,
+    config: DeepPartial<LobeAgentConfig>,
+    signal?: AbortSignal,
+  ) {
+    console.log('updateSessionChatConfig', activeId, config, signal);
+    throw new Error('not implemented');
   }
 
   async removeSession(id: string) {

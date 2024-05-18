@@ -40,8 +40,18 @@ const nextAuthMiddleware = auth((req) => {
   });
 });
 
+const clerkAuthMiddleware = clerkMiddleware((auth, request) => {
+  // if user is logged in and on the home page, redirect to chat
+  if (auth().userId && request.nextUrl.pathname === '/') {
+    request.nextUrl.pathname = '/chat';
+    return NextResponse.redirect(request.nextUrl);
+  }
+
+  return NextResponse.next();
+});
+
 export default authEnv.NEXT_PUBLIC_ENABLE_CLERK_AUTH
-  ? clerkMiddleware()
+  ? clerkAuthMiddleware
   : authEnv.NEXT_PUBLIC_ENABLE_NEXT_AUTH
     ? nextAuthMiddleware
     : defaultMiddleware;
