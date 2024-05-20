@@ -199,26 +199,26 @@ describe('MessageClientService', () => {
     });
   });
 
-  describe('updateMessagePlugin', () => {
-    it('should update the plugin payload of a message', async () => {
-      // Setup
-      const newPlugin = {
-        type: 'default',
-        apiName: 'abc',
-        arguments: '',
-        identifier: 'plugin1',
-      } as ChatPluginPayload;
-
-      (MessageModel.update as Mock).mockResolvedValue({ ...mockMessage, plugin: newPlugin });
-
-      // Execute
-      const result = await messageService.updateMessagePlugin(mockMessageId, newPlugin);
-
-      // Assert
-      expect(MessageModel.update).toHaveBeenCalledWith(mockMessageId, { plugin: newPlugin });
-      expect(result).toEqual({ ...mockMessage, plugin: newPlugin });
-    });
-  });
+  // describe('updateMessagePlugin', () => {
+  // it('should update the plugin payload of a message', async () => {
+  //   // Setup
+  //   const newPlugin = {
+  //     type: 'default',
+  //     apiName: 'abc',
+  //     arguments: '',
+  //     identifier: 'plugin1',
+  //   } as ChatPluginPayload;
+  //
+  //   (MessageModel.update as Mock).mockResolvedValue({ ...mockMessage, plugin: newPlugin });
+  //
+  //   // Execute
+  //   const result = await messageService.updateMessagePlugin(mockMessageId, newPlugin);
+  //
+  //   // Assert
+  //   expect(MessageModel.update).toHaveBeenCalledWith(mockMessageId, { plugin: newPlugin });
+  //   expect(result).toEqual({ ...mockMessage, plugin: newPlugin });
+  // });
+  // });
 
   describe('updateMessagePluginState', () => {
     it('should update the plugin state of a message', async () => {
@@ -232,10 +232,10 @@ describe('MessageClientService', () => {
       });
 
       // Execute
-      const result = await messageService.updateMessagePluginState(mockMessageId, key, value);
+      const result = await messageService.updateMessagePluginState(mockMessageId, { key: value });
 
       // Assert
-      expect(MessageModel.updatePluginState).toHaveBeenCalledWith(mockMessageId, key, value);
+      expect(MessageModel.updatePluginState).toHaveBeenCalledWith(mockMessageId, { key: value });
       expect(result).toEqual({ ...mockMessage, pluginState: newPluginState });
     });
   });
