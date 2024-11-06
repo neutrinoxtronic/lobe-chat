@@ -216,7 +216,7 @@
     "fake-indexeddb": "^5.0.2",
     "glob": "^10.3.15",
     "gray-matter": "^4.0.3",
-    "happy-dom": "^14.10.1",
+    "happy-dom": "^15.10.1",
     "husky": "^9.0.11",
     "just-diff": "^6.0.2",
     "lint-staged": "^15.2.2",
